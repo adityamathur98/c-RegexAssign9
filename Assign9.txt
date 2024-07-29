@@ -1,0 +1,233 @@
+Q1.WAP in c++ to print prime numbers from 1 to 'n' where n is given by user
+
+Ans. #include <bits/stdc++.h>
+using namespace std;
+
+void printPrime1toN(int n){
+    for(int i = 1; i <= n; i++){
+        int factors = 0;
+        for(int j = 2; j < i; j++){
+            if (i%j == 0){
+                factors++;
+            }
+        }
+        //Condition to check is factos is not more than 0
+        if (factors == 0){
+            cout << i << endl;
+        }
+    }
+}
+
+int main()
+{
+    // WAP in c++ to print prime numbers from 1 to 'n' where n is given by user
+    int n;
+    cout << "Enter Any Number: ";
+    cin >> n;
+    printPrime1toN(n);
+
+    return 0;
+}
+
+Q2. WAP in c++ to print fibonacci series from 1 to n, where n is given by user
+
+Ans.#include <bits/stdc++.h>
+using namespace std;
+
+
+void printFabbonacciUptoN(int n){
+    int a = 0, b = 1, next = 0;
+    
+        if (n >= a){
+            cout << a << " ";
+        } 
+
+        if (n >= b){
+            cout << b << " ";
+        } 
+        
+        while(true){
+            next = a+b;
+            if (next > n)
+                break;
+            cout << next << " ";
+            a = b;
+            b = next;
+        }
+}
+
+int main()
+{
+    // WAP in c++ to print fibonacci series from 1 to n, where n is given by user
+    int n;
+    cout << "Enter Any Number: ";
+    cin >> n;
+    printFabbonacciUptoN(n);
+
+    return 0;
+}
+
+Q3. WAP in c++ to take input for number of rows from user, and print a right triangle with prime numbers in it.
+
+2 
+3 5
+7 11 13
+17 19 23 29
+
+Ans. #include <iostream>
+using namespace std;
+
+bool isPrime(int n)
+{
+    int factor = 0;
+
+    if (n <= 1)
+    {
+        return false;
+    }
+
+    if (n == 2)
+    {
+        return true;
+    }
+
+    if (n % 2 == 0)
+    {
+        return false;
+    }
+
+    for (int i = 3; i * i <= n; i = i + 2)
+    {
+        if (n % i == 0)
+        {
+            factor++;
+        }
+    }
+
+    if (factor == 0)
+    {
+        return true;
+    }
+    else
+    {
+        false;
+    }
+}
+
+int n = 1;
+
+int main()
+{
+    int row;
+    cout << "Enter Number of Rows: ";
+    cin >> row;
+    for (int i = 1; i <= row; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            if (isPrime(n))
+            {
+                cout << n << " ";
+                n++;
+            }
+            else
+            {
+                while (!isPrime(n))
+                {
+                    n++;
+                }
+                cout << n << " ";
+                n++;
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+Q4.WAP a program in c++ to take the input from user and reverse it.
+
+Ans. #include <bits/stdc++.h>
+using namespace std;
+
+int getCount(int n){
+    int count = 0;
+    for(int i = n; i > 0; i/=10){
+        count++;
+    }
+    return count;
+}
+
+
+void printReverseNumber(int n){
+    int count = getCount(n);
+    int reverseNum = 0;
+    
+    for(int i = 1; i <= count; i++){
+        int lastDigit = n%10;
+        reverseNum = reverseNum * 10 + lastDigit;
+        n /= 10;
+    }
+    cout << reverseNum;
+}
+
+int main()
+{
+    // WAP a program in c++ to take the input from user and reverse it.
+    int n;
+    cout << "Enter Any Number: ";
+    cin >> n;
+    printReverseNumber(n);
+
+    return 0;
+}
+
+Q5. WAP in c++ to take input from user and rotate the digits from right side by one
+
+Ans. #include <bits/stdc++.h>
+using namespace std;
+
+int getCount(int n){
+    if (n == 0){
+        return 1;
+    }
+    int count = 0;
+    for(int i = n; i > 0; i/=10){
+        count++;
+    }
+    return count;
+}
+
+
+int getRotatedNumber(int n, int r){
+    int count = getCount(n);
+    r = r % count;
+    if (r < 0){
+        r = count + r;
+    }
+    
+    if (n == 0){
+        return n;
+    }
+    for(int i = 1; i <= r; i++){
+        int lastDigit = n%10;
+        n = lastDigit * pow(10, count-1) + n/10;
+    }
+    
+    return n;
+    
+}
+
+int main()
+{
+    // WAP in c++ to take input from user and rotate the digits from right side by one
+    int n, r;
+    cout << "Enter Any Number: ";
+    cin >> n;
+    cout << "Enter Rotation Time: ";
+    cin >> r;
+    int rotatedNum = getRotatedNumber(n, r);
+    cout << rotatedNum;
+
+    return 0;
+}
